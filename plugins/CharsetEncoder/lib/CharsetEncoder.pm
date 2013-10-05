@@ -53,7 +53,8 @@ sub add_script {
     my ($cb, $app, $tmpl) = @_;
 
     my $plugin = MT->component("CharsetEncoder");
-    my $blog_id = $app->blog->id;
+    my $blog = $app->blog or return;
+    my $blog_id = $blog->id;
     my $enable = $plugin->get_config_value('enable_thisblog', 'blog:'.$blog_id);
     my $separate = $plugin->get_config_value('each_template', 'blog:'.$blog_id);
 
